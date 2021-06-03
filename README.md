@@ -1,7 +1,7 @@
 
 # CBC Employee Manager
 
-![Alt text](https://img.shields.io/badge/License-Creative-Commons-license-family-brightgreen "Creative Commons license family")
+![Alt text](https://img.shields.io/badge/License-Creative_Commons_license_family-brightgreen "Creative Commons license family")
 
 ## Description
 ​
