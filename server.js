@@ -1,6 +1,6 @@
 const express = require('express');
-const routes = require('./routes');
-const sequelize = require('./config/connection');
+const connection = require('./config/connection');
+const init = require('./lib/index');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,8 +8,21 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(routes);
-
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+connection.connect((err) => {
+  if (err) throw err;
+  printHeader();
+  init();
 });
+
+function printHeader() {
+  let header = []   
+  header.push("╔════════════════════════════════╗")
+  header.push("║    ┌─╴┌╮╮┌─╮╷  ╭─╮╷ ╷┌─╴┌─╴    ║")
+  header.push("║    ├╴ │││├─╯│  │ │╰┬╯├╴ ├╴     ║")
+  header.push("║    └─╴╵ ╵╵  └─╴╰─╯ ╵ └─╴└─╴    ║")
+  header.push("║     ┌╮╮╭─╮┌╮╷╭─╮╭─╮┌─╴┌─╮      ║")
+  header.push("║     │││├─┤│││├─┤│ ┐├─ ├┬╯      ║")
+  header.push("║     ╵ ╵╵ ╵╵╰┘╵ ╵╰─╯└─╴╵╰─      ║")
+  header.push("╚════════════════════════════════╝")
+  console.log(header.join('\n'));
+};
